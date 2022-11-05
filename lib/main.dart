@@ -1,7 +1,9 @@
+import 'package:comicsapp/pages/home_page.dart';
+import 'package:comicsapp/pages/introduction.dart';
 import 'package:flutter/material.dart';
 
 void main(){
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -10,6 +12,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.red
+      ),
+      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/' : (_) => const Intro(),
+        '/HomePage' : (_) => const HomePage()
+      },
+    );
   }
 }
