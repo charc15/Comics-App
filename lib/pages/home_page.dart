@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:comicsapp/api/response_comics.dart';
 import 'package:comicsapp/api/comics_api.dart';
-import 'item_comic.dart';
+import '../models/item_comic.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -20,24 +20,31 @@ class _HomePageState extends State<HomePage> {
         return Text(snapshot.error.toString());
       }
       if(!snapshot.hasData){
-        return const Center(child: CircularProgressIndicator());
+        return const Padding(
+          padding: EdgeInsets.only(top: 220),
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
       }
       if(snapshot.hasData){
-        final List<String> listComicsFake = List.generate(20, (int index) => 'Comic número $index');
+        final List<String> listComicsFake = List.generate(20, (int index ) => 'Comic número $index');
         return Expanded(
-          child: GridView.builder(
-            itemCount: listComicsFake.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 5
+          child: Padding(
+            padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
+            child: GridView.builder(
+              itemCount: listComicsFake.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 5,
+                mainAxisExtent: 285,
+                mainAxisSpacing: 5
+              ),
+              itemBuilder: (context, index){
+                final comic = snapshot.data![index];
+                return (ItemComic(comic: comic));
+              },
             ),
-            itemBuilder: (context, index){
-              final comic = snapshot.data![index];
-              return ItemComic(
-                comic: comic,
-              );
-            },
           ),
         );
       }
