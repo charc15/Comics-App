@@ -1,14 +1,28 @@
 import 'package:comicsapp/api/response_comics.dart';
 import 'package:comicsapp/pages/comic_about.dart';
+import 'package:comicsapp/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
-class ItemComic extends StatelessWidget {
-  const ItemComic({
+class ItemComic extends StatefulWidget {
+  ItemComic({
     Key? key,
-    required this.comic
+    required this.comic,
   }) : super(key: key);
 
   final Comic comic;
+
+  @override
+  State<ItemComic> createState() => _ItemComicState(favorite: false);
+}
+
+class _ItemComicState extends State<ItemComic> {
+  _ItemComicState({
+    required this.favorite
+    
+  });
+  bool favorite;
+
+  Icon iconFavorite = const Icon(Icons.favorite_border);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +30,7 @@ class ItemComic extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: ((context) => ComicAbout(comic: comic)))
+          MaterialPageRoute(builder: ((context) => ComicAbout(comic: widget.comic)))
         );
       },
       child: Container(
@@ -25,7 +39,7 @@ class ItemComic extends StatelessWidget {
           image: DecorationImage(
             fit: BoxFit.cover,
             image: NetworkImage(
-              comic.getFullPoster()
+              widget.comic.getFullPoster()
             )
           )
         ),
@@ -47,9 +61,26 @@ class ItemComic extends StatelessWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(comic.title, style: const TextStyle(color: Colors.white)),
+            child: Row(
+              children: [
+                Text(widget.comic.title, style: const TextStyle(color: Colors.white)),
+                IconButton(
+                  onPressed: () {
+                    if(favorite == false){
+                      favorite = true;
+                      iconFavorite = const Icon(Icons.favorite);
+                    } else {
+                      favorite = false;
+                      iconFavorite = const Icon(Icons.favorite_border);
+                      listaFavoritos.add(ItemComic(comic: widget.comic));
+                    }
+                  },
+                  icon: iconFavorite,
+                )
+              ],
+            ),
           ),
-        )
+        ),
       ),
     );
   }

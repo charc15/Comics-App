@@ -27,14 +27,6 @@ class ComicAbout extends StatelessWidget {
                 )
               ),
             ),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  
-                },
-                icon: Icon(Icons.favorite_border),
-              )
-            ],
           ),
           SliverToBoxAdapter(
             child: Padding(
@@ -52,7 +44,7 @@ class ComicAbout extends StatelessWidget {
                       ),
                       Column(
                         children: [
-                          Text('${comic.price}', style: _titStyle),
+                          Text(comic.price, style: _titStyle),
                           Text('Price', style: _subtitStyle,)
                         ],
                       )

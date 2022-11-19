@@ -3,6 +3,8 @@ import 'package:comicsapp/api/response_comics.dart';
 import 'package:comicsapp/api/comics_api.dart';
 import '../models/item_comic.dart';
 
+List<Widget> listaFavoritos = [];
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -53,7 +55,18 @@ class _HomePageState extends State<HomePage> {
     ),
     Column(
       children: [
-        const Text('Favoritos')
+        GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 5,
+                mainAxisExtent: 285,
+                mainAxisSpacing: 5
+          ),
+          itemBuilder: (context, index) {
+            listaFavoritos;
+            throw Exception('No se han añadido favoritos');
+          },
+        )
       ],
     ),
     Column(
