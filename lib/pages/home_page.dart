@@ -63,8 +63,7 @@ class _HomePageState extends State<HomePage> {
                 mainAxisSpacing: 5
           ),
           itemBuilder: (context, index) {
-            listaFavoritos;
-            throw Exception('No se han añadido favoritos');
+            throw Exception('');
           },
         )
       ],

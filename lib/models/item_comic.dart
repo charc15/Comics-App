@@ -9,20 +9,15 @@ class ItemComic extends StatefulWidget {
     required this.comic,
   }) : super(key: key);
 
-  final Comic comic;
+  Comic comic;
 
   @override
-  State<ItemComic> createState() => _ItemComicState(favorite: false);
+  State<ItemComic> createState() => _ItemComicState();
 }
 
 class _ItemComicState extends State<ItemComic> {
-  _ItemComicState({
-    required this.favorite
-    
-  });
-  bool favorite;
-
-  Icon iconFavorite = const Icon(Icons.favorite_border);
+  Icon iconFavorite = const Icon(Icons.favorite_border, color: Colors.red,);
+  bool favorite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -61,18 +56,22 @@ class _ItemComicState extends State<ItemComic> {
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(
+            child: Column(
               children: [
                 Text(widget.comic.title, style: const TextStyle(color: Colors.white)),
                 IconButton(
                   onPressed: () {
                     if(favorite == false){
+                      setState(() {
                       favorite = true;
-                      iconFavorite = const Icon(Icons.favorite);
-                    } else {
-                      favorite = false;
-                      iconFavorite = const Icon(Icons.favorite_border);
+                      iconFavorite = const Icon(Icons.favorite, color: Colors.red,);   
                       listaFavoritos.add(ItemComic(comic: widget.comic));
+                      });
+                    } else {
+                      setState(() {
+                      favorite = false;
+                      iconFavorite = const Icon(Icons.favorite_border, color: Colors.red,);
+                      });
                     }
                   },
                   icon: iconFavorite,
@@ -81,6 +80,21 @@ class _ItemComicState extends State<ItemComic> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class Favorite extends StatelessWidget {
+  Favorite({super.key, required this.comic});
+
+  Comic comic;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: listaFavoritos
       ),
     );
   }
