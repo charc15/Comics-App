@@ -39,14 +39,23 @@ class Comic {
   Comic({
     required this.title,
     required this.poster,
+    this.description  = "",
+    required this.pageCount,
+    required this.price
   });
 
   String title;
   PosterImage poster;
+  String ?description;
+  int pageCount;
+  double price;
 
   factory Comic.fromMap(Map<String, dynamic> json) => Comic(
     title: json["title"],
     poster: PosterImage.fromMap(json["thumbnail"]),
+    description: json["description"],
+    pageCount: json["pageCount"],
+    price: json["prices"][0]["price"]
   );
   getFullPoster() {
     return '${poster.path}.jpg';

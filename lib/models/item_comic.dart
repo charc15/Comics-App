@@ -38,11 +38,11 @@ class ItemComic extends StatelessWidget {
               Color.fromARGB(197, 36, 36, 36),
               Color.fromARGB(128, 36, 36, 36),
               Color.fromARGB(54, 36, 36, 36),
-              Color.fromARGB(0, 85, 85, 85),
+              Color.fromARGB(0, 255, 255, 255),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            stops: [0.1, 0.2, 0.3, 0.4, 0.0]
+            stops: [0.1, 0.2, 0.3, 0.4, 1]
             )
           ),
           child: Padding(

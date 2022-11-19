@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
             label: 'Inicio'
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.star),
+            icon: Icon(Icons.favorite),
             label: 'Favoritos'
           ),
           BottomNavigationBarItem(
